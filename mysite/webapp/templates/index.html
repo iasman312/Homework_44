@@ -9,7 +9,7 @@
 </head>
 <body>
     <p>Guess 4 numbers. Enter them separated with spaces:</p>
-    <form method="POST" action="results/">
+    <form method="POST" action="/results/">
         {% csrf_token %}
         <input type="text" name="numbers"/>
         <input type="submit" value="Send"/>
