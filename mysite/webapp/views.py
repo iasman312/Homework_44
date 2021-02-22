@@ -1,6 +1,8 @@
 from django.shortcuts import render
 
 secret_nums = [5, 1, 2, 9]
+num = 1
+round_history = {}
 
 
 def index_view(request):
@@ -37,7 +39,18 @@ def results(request):
             bulls += 1
             count += 1
     cows -= bulls
-    context = {'cows': cows, 'bulls': bulls}
+    if bulls == 4:
+        message = 'You won!!!'
+    else:
+        message = f'Bulls: {bulls}, cows: {cows}'
+    context = {'message': message}
+    global num
+    round_history[num] = context
+    num += 1
     return render(request, 'index.html', context)
+
+
+def history(request):
+    return render(request, 'history.html', {'history': round_history})
 
 

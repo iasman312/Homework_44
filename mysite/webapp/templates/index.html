@@ -14,12 +14,8 @@
         <input type="text" name="numbers"/>
         <input type="submit" value="Send"/>
     </form>
-    {% if error %}
-        <p>{{ error }}</p>
-    {% elif bulls == 4 %}
-        <p>You won!!!</p>
-    {% else %}
-        <p>Bulls:{{ bulls }}, cows: {{ cows }}</p>
-    {% endif %}
+    <p>{{ error }}</p>
+    <p>{{ message }}</p>
+    <p><a href="/history/">History</a></p>
 </body>
 </html>
