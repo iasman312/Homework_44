@@ -8,7 +8,19 @@ def index_view(request):
 
 
 def results(request):
-    numbers = list(map(int, request.POST.split(' ')))
+    error = None
+    try:
+        numbers = list(map(int, request.POST.split(' ')))
+    except:
+        error = "Enter integers"
+        return
+    for i in numbers:
+        if 0 >= i > 9:
+            error = "Enter a number between 0 and 10"
+    if len(numbers) != 4:
+        error = "Enter 4 digits"
+    elif set(numbers) != 4:
+        error = "Enter 4 different digits"
     cows = 0
     bulls = 0
     count = 0
@@ -21,7 +33,7 @@ def results(request):
             bulls += 1
             count += 1
     cows -= bulls
-    context = {'cows': cows, 'bulls': bulls}
+    context = {'cows': cows, 'bulls': bulls, 'error': error}
     return render(request, 'index.html', context)
 
 
